@@ -18,7 +18,7 @@ export const CreateProjectInput = () => {
 
   const handleGenerate = () => {
     if (prompt.trim()) {
-      window.open(`https://makeakira.vercel.app?q=${encodeURIComponent(prompt)}`, '_blank');
+      window.location.href = `https://makeakira.vercel.app?q=${encodeURIComponent(prompt)}`;
     }
   };
 

@@ -63,8 +63,20 @@ export const DashboardOverview = () => {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-10"
+      className="space-y-10 relative"
     >
+      {/* Ornament */}
+      <div className="hidden md:block absolute -top-10 -right-10 w-64 h-64 pointer-events-none z-0 opacity-50">
+        <img 
+          src="/kg-ornament.png" 
+          alt="Ornament" 
+          className="w-full h-full object-contain"
+          style={{
+            maskImage: 'linear-gradient(to bottom left, black, transparent)',
+            WebkitMaskImage: 'linear-gradient(to bottom left, black, transparent)'
+          }}
+        />
+      </div>
       {/* Hero / Create Section */}
       <motion.section variants={item} className="space-y-6">
         <div className="space-y-1">

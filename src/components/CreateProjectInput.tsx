@@ -6,28 +6,21 @@ export const CreateProjectInput = () => {
   const [prompt, setPrompt] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   
-  const colors = [
-    { hex: "#ef4444", shadow: "rgba(239, 68, 68, 0.5)" }, // Red
-    { hex: "#f97316", shadow: "rgba(249, 115, 22, 0.5)" }, // Orange
-    { hex: "#eab308", shadow: "rgba(234, 179, 8, 0.5)" }, // Yellow
-    { hex: "#22c55e", shadow: "rgba(34, 197, 94, 0.5)" }, // Green
-    { hex: "#06b6d4", shadow: "rgba(6, 182, 212, 0.5)" }, // Cyan
-    { hex: "#3b82f6", shadow: "rgba(59, 130, 246, 0.5)" }, // Blue
-    { hex: "#8b5cf6", shadow: "rgba(139, 92, 246, 0.5)" }, // Violet
-    { hex: "#d946ef", shadow: "rgba(217, 70, 239, 0.5)" }, // Fuchsia
-  ];
-
-  const [colorIndex, setColorIndex] = useState(0);
   const [shadowBlur, setShadowBlur] = useState(20);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setColorIndex((prev) => (prev + 1) % colors.length);
       // Random blur between 20px and 60px
       setShadowBlur(Math.floor(Math.random() * 40) + 20);
     }, 1000);
     return () => clearTimeout(timeout);
-  }, [colorIndex]);
+  }, [shadowBlur]);
+
+  const handleGenerate = () => {
+    if (prompt.trim()) {
+      window.open(`https://makeakira.vercel.app?q=${encodeURIComponent(prompt)}`, '_blank');
+    }
+  };
 
   return (
     <motion.div 
@@ -36,7 +29,7 @@ export const CreateProjectInput = () => {
         ${isFocused ? 'scale-[1.01] ring-1 ring-black/5' : 'border border-gray-100'}
       `}
       animate={{
-        boxShadow: `0 0 ${shadowBlur}px ${colors[colorIndex].hex}60` // 60 is hex opacity ~37%
+        boxShadow: `0 0 ${shadowBlur}px #7f1d1d60` // Dark red with opacity
       }}
       transition={{ duration: 0.8 }}
     >
@@ -51,13 +44,14 @@ export const CreateProjectInput = () => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder="Describe your dream website..."
-          className="w-full pl-14 pr-36 py-5 text-lg bg-transparent border-none outline-none placeholder:text-gray-300 text-gray-900 font-medium relative z-10"
+          className="w-full pl-14 pr-16 sm:pr-36 py-5 text-lg bg-transparent border-none outline-none placeholder:text-gray-300 text-gray-900 font-medium relative z-10"
         />
         <button 
-          className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 z-20 bg-red-900 text-white shadow-lg shadow-red-900/20 hover:scale-105 hover:shadow-red-900/30 disabled:opacity-70 disabled:hover:scale-100"
+          onClick={handleGenerate}
+          className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2 px-3 sm:px-6 py-3 rounded-xl font-semibold transition-all duration-300 z-20 bg-red-900 text-white shadow-lg shadow-red-900/20 hover:scale-105 hover:shadow-red-900/30 disabled:opacity-70 disabled:hover:scale-100"
           disabled={prompt.length === 0}
         >
-          <span>Generate</span>
+          <span className="hidden sm:inline">Generate</span>
           <ArrowRight size={18} />
         </button>
       </div>

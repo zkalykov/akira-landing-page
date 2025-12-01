@@ -170,7 +170,7 @@ export const DashboardLayout = () => {
           <img 
             src="/kg-banner.png" 
             alt="Dashboard Banner" 
-            className="w-full h-48 md:h-64 object-cover block opacity-50 grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-full h-48 md:h-64 object-cover block transition-all duration-500"
             style={{
               maskImage: 'linear-gradient(to bottom, transparent, black)',
               WebkitMaskImage: 'linear-gradient(to bottom, transparent, black)'

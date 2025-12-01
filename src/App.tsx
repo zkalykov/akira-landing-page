@@ -8,6 +8,7 @@ import { DashboardLayout } from "./pages/DashboardLayout";
 import { DashboardOverview } from "./pages/DashboardOverview";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { TemplatesPage } from "./pages/TemplatesPage";
+import { NotFound } from "./pages/NotFound";
 
 const Home = () => (
   <Layout>
@@ -31,6 +32,7 @@ function App() {
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="templates" element={<TemplatesPage />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

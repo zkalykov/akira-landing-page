@@ -63,7 +63,7 @@ export const AnimatedHeroTitle = ({ className }: AnimatedHeroTitleProps) => {
         <div key={i} className="relative w-full text-center">
           {/* Text Content */}
           <motion.h1
-            className="relative z-10 px-6 py-2 text-4xl font-bold tracking-tighter sm:text-7xl md:text-8xl"
+            className="relative z-10 px-6 py-1 text-3xl font-bold tracking-tighter sm:text-7xl md:text-8xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
